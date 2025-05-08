@@ -10,6 +10,14 @@ To simplify this experience, **RMLM** acts as a thin wrapper that runs RamaLama 
 
 Head to the [Releases Page](https://github.com/benoitf/rmlm/releases) and download the binary for your platform.
 
+### macOS
+
+> **Note:** The binary is not code-signed. You can either [build it yourself](./CONTRIBUTING.md) or remove the quarantine attribute manually:
+
+```bash
+xattr -d com.apple.quarantine rmlm-mac-arm64
+```
+
 ## ⚙️ Prerequisites
 
 - A working [Podman](https://podman.io/) installation on **Windows** or **macOS**.
