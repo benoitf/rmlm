@@ -1,4 +1,4 @@
-# RMLM
+# rmlm
 
 Make launching [RamaLama](https://github.com/containers/ramalama) boring 🚀
 
