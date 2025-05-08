@@ -1,6 +1,6 @@
 # Contributing 😄
 
-Thanks for considering contributing to **RMLM**! Your help makes the project better. Below are the steps to get you set up and contributing smoothly. 🚀
+Thanks for considering contributing to **rmlm**! Your help makes the project better. Below are the steps to get you set up and contributing smoothly. 🚀
 
 
 ## 🛠️ Prerequisites
