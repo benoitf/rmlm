@@ -14,7 +14,7 @@ Head to the [Releases Page](https://github.com/benoitf/rmlm/releases) and downlo
 
 oneliner (assuming you have the jq utility) that will fetch the latest macOS binary and rename it to `rmlm`
 ```bash
-curl -L $(curl -s https://api.github.com/repos/benoitf/rmlm/releases/latest | jq -r '.assets[] | select(.name | test("rmlm-mac-universal")) | .browser_download_url') -o rmlm-mac-universal && chmod u+x rmlm-mac-universal && mv rmlm-mac-universal rmlm
+curl -L $(curl -s https://api.github.com/repos/benoitf/rmlm/releases/latest | jq -r '.assets[] | select(.name | test("rmlm-mac-universal")) | .browser_download_url') -o rmlm && chmod u+x rmlm
 ```
 
 Option: copy the binary to `/usr/local/bin`
@@ -24,6 +24,25 @@ Option: copy the binary to `/usr/local/bin`
 ```bash
 xattr -d com.apple.quarantine rmlm-mac-arm64
 ```
+
+### Windows
+
+oneliner (for Cmd shell):
+
+```
+for /f "tokens=*" %i in ('curl -s https://api.github.com/repos/benoitf/rmlm/releases/latest ^| findstr /r "rmlm-win-x64.exe"') do curl -L %i -o rmlm.exe
+```
+
+
+### Linux
+
+oneliner (assuming you have the jq utility) that will fetch the latest Linux binary based on your arch and rename it to `rmlm`
+```bash
+curl -L $(curl -s https://api.github.com/repos/benoitf/rmlm/releases/latest | jq -r --arg arch "$(uname -m)" '.assets[] | select(.name | test("rmlm-linux-" + ($arch | if . == "aarch64" then "arm64" else "x64" end))) | .browser_download_url') -o rmlm && chmod u+x rmlm
+```
+
+Option: copy the binary to `/usr/local/bin`
+
 
 
 ## ⚙️ Prerequisites
@@ -44,7 +63,7 @@ Once installed, you can use the `rmlm` command just like you would use `ramalama
 This command launches a small LLM and gives you the familiar interactive RamaLama prompt:
 
 ```bash
-rmlm run smollm:135m
+rmlm run tinyllama
 🦭 >
 ```
 

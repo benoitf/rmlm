@@ -81,7 +81,7 @@ jobs:
           rest=${CURRENT_VERSION#*.}
           minor=${rest%%.*}
           patch=${CURRENT_VERSION##*.}
-          bumpedVersion="$major.$minor.$((patch + 1))"
+          bumpedVersion="$major.$minor.$((patch + 1))-next"
           bumpedBranchName="bump-to-${bumpedVersion}"
           git checkout -b "${bumpedBranchName}"
           sed -i "s/^version = \".*\"/version = \"${bumpedVersion}\"/" Cargo.toml
