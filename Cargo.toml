@@ -1,0 +1,18 @@
+[package]
+name = "rmlm"
+version = "0.0.1"
+edition = "2021"
+authors = ["Florent Benoit <florent.benoit@redhat.com>"]
+description = "A tiny CLI wrapper to run ramalama CLI using podman"
+license = "Apache-2.0"
+
+[dependencies]
+dirs = "5.0" # Minimal dependency to get home dir cross-platform
+
+[profile.release]
+opt-level = "z"        # Optimize for size
+lto = true             # Link Time Optimization
+codegen-units = 1      # Compile in a single unit for better LTO
+panic = "abort"        # Smaller binaries, no stack unwinding
+strip = "symbols"      # Remove debug symbols during build (requires Rust 1.60+)
+
