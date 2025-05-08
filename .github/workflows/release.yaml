@@ -69,7 +69,7 @@ jobs:
           tag: ${{ steps.TAG_UTIL.outputs.githubTag }}
           name: ${{ steps.TAG_UTIL.outputs.githubTag }}
           draft: true
-          prerelease: true
+          prerelease: false
       - name: Create the PR to bump the version in the main branch (only if we're tagging from main branch)
         if: ${{ github.event.inputs.branch == 'main' }}
         run: |
@@ -126,12 +126,10 @@ jobs:
       - name: attach all artifacts
         run: make release
 
-      - name: Upload release asset
-        uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: ./release/rmlm-*
+      - name: Upload assets to the release
+        run: |
+         # Upload the asset to the release using the GitHub CLI
+         gh release upload ${{ needs.tag.outputs.githubTag }} ./release/rmlm-* --repo $GITHUB_REPOSITORY
 
   release:
     needs: [tag, build]
