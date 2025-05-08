@@ -99,7 +99,7 @@ dependencies = [
 
 [[package]]
 name = "rmlm"
-version = "0.0.1-next"
+version = "0.0.2-next"
 dependencies = [
  "dirs",
 ]
