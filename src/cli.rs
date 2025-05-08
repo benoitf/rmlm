@@ -94,9 +94,14 @@ fn get_podman_socket() -> String {
     }
 }
 
-#[cfg(not(target_os = "linux"))]
+#[cfg(target_os = "macos")]
 fn get_podman_socket() -> String {
     "/run/user/501/podman/podman.sock".to_string() // use rootless podman socket from podman machine
+}
+
+#[cfg(target_os = "windows")]
+fn get_podman_socket() -> String {
+    "/run/user/1000/podman/podman.sock".to_string() // use rootless podman socket from podman machine
 }
 
 pub fn run_cli(args: Vec<String>) -> i32 {
