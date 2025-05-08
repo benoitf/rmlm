@@ -4,7 +4,7 @@ Make launching [RamaLama](https://github.com/containers/ramalama) boring 🚀
 
 RamaLama is a Python-based CLI tool that may require additional Python dependencies and setup, especially on Windows. Native support on Windows can be tricky due to path and environment assumptions.
 
-To simplify this experience, **RMLM** acts as a thin wrapper that runs RamaLama using a containerized approach with **Podman** to ensure consistency across platforms.
+To simplify this experience, **rmlm** CLI acts as a thin wrapper that runs RamaLama CLI using a containerized approach with **Podman** to ensure consistency across platforms.
 
 ## 📦 Download
 
