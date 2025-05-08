@@ -12,11 +12,19 @@ Head to the [Releases Page](https://github.com/benoitf/rmlm/releases) and downlo
 
 ### macOS
 
+oneliner (assuming you have the jq utility) that will fetch the latest macOS binary and rename it to `rmlm`
+```bash
+curl -L $(curl -s https://api.github.com/repos/benoitf/rmlm/releases/latest | jq -r '.assets[] | select(.name | test("rmlm-mac-universal")) | .browser_download_url') -o rmlm-mac-universal && chmod u+x rmlm-mac-universal && mv rmlm-mac-universal rmlm
+```
+
+Option: copy the binary to `/usr/local/bin`
+
 > **Note:** The binary is not code-signed. You can either [build it yourself](./CONTRIBUTING.md) or remove the quarantine attribute manually:
 
 ```bash
 xattr -d com.apple.quarantine rmlm-mac-arm64
 ```
+
 
 ## ⚙️ Prerequisites
 
@@ -28,7 +36,7 @@ xattr -d com.apple.quarantine rmlm-mac-arm64
 Once installed, you can use the `rmlm` command just like you would use `ramalama`:
 
 ```bash
-rmlm <RamaLama command>
+./rmlm <RamaLama command>
 ```
 
 ## 🧠 Example: Run a Model (Interactive CLI)
