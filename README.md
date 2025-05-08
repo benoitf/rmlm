@@ -27,10 +27,10 @@ xattr -d com.apple.quarantine rmlm-mac-arm64
 
 ### Windows
 
-oneliner (for Cmd shell):
+oneliner (for PowerShell):
 
 ```
-for /f "tokens=*" %i in ('curl -s https://api.github.com/repos/benoitf/rmlm/releases/latest ^| findstr /r "rmlm-win-x64.exe"') do curl -L %i -o rmlm.exe
+Invoke-WebRequest -Uri ((Invoke-RestMethod -Uri "https://api.github.com/repos/benoitf/rmlm/releases/latest" -Headers @{ "User-Agent" = "PowerShell" }).assets | Where-Object { $_.name -eq "rmlm-win-x64.exe" }).browser_download_url -OutFile "rmlm.exe"
 ```
 
 
